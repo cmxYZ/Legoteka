@@ -64,7 +64,11 @@ public class BricksGrid : MonoBehaviour
                     }
 
                     if(flyingBrick.transform.position == instruction.currentModel.transform.position)
+                    {
                         PlaceFlyingBrick(x, z);
+                        instruction.NextStep();
+                    }
+                        
                 }
                 
             }
