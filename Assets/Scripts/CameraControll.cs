@@ -12,14 +12,13 @@ public class CameraControll : MonoBehaviour
 
     public Transform cameraParent;
     public Camera mainCamera;
-    public float sensitivity = 0.2f;
-    public float rotateSensitivity = 5f;
-    public float zoomSensitivity = 5f;
-    public float zoomMin = 40;
-    public float zoomMax = 90;
-    public float YMin = 0;
-    public float YMax = 10;
-    public Button OnOffButt;
+    private float sensitivity = 0.005f;
+    private float rotateSensitivity = 0.1f;
+    private float zoomSensitivity = 0.05f;
+    private float zoomMin = 40;
+    private float zoomMax = 90;
+    private float YMin = 0;
+    private float YMax = 15;
 
     public static bool movingState = false;
     private bool touched;
@@ -28,11 +27,6 @@ public class CameraControll : MonoBehaviour
     private Vector3 delta;
     private float zoomPrevMagnitude;
     private bool firstZoomTouch;
-
-    public void Start()
-    {
-        OnOffButt.onClick.AddListener(PressButton);
-    }
 
     public void Update()
     {
@@ -98,7 +92,7 @@ public class CameraControll : MonoBehaviour
         mainCamera.fieldOfView = Mathf.Clamp(mainCamera.fieldOfView - delta * zoomSensitivity, zoomMin, zoomMax);
     }
 
-    public void PressButton()
+    public void OnOffCamera()
     {
         movingState = !movingState;
     }
