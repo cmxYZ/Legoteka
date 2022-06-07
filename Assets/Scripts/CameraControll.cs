@@ -12,16 +12,16 @@ public class CameraControll : MonoBehaviour
 
     public Transform cameraParent;
     public Camera mainCamera;
-    public float sensitivity = 0.005f;
-    public float rotateSensitivity = 0.05f;
-    public float zoomSensitivity = 0.05f;
+    public float sensitivity = 0.2f;
+    public float rotateSensitivity = 5f;
+    public float zoomSensitivity = 5f;
     public float zoomMin = 40;
     public float zoomMax = 90;
     public float YMin = 0;
     public float YMax = 10;
     public Button OnOffButt;
 
-    private bool movingState = false;
+    public static bool movingState = false;
     private bool touched;
     private Vector3 startPos;
     private Direction camDirection = Direction.None;

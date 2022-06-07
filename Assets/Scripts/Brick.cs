@@ -5,24 +5,6 @@ public class Brick : MonoBehaviour
     public Renderer MainRenderer;
     public Vector2 Size = new Vector2(1, 1);
 
-
-    public void SetTransparent(bool available)
-    {
-        if (available)
-        {
-            MainRenderer.material.color = new Color(0, 0.1f, 0, 0.1f);
-        }
-        else
-        {
-            MainRenderer.material.color = new Color(1, 0, 0, 0.1f);
-        }
-    }
-
-    public void SetNormal()
-    {
-        MainRenderer.material.color = Color.white;
-    }
-
     private void OnDrawGizmos()
     {
         for (int x = 0; x < Size.x; x++)

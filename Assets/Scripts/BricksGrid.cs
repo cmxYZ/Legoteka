@@ -7,8 +7,10 @@ public class BricksGrid : MonoBehaviour
     private Brick[,] grid;
     private Brick flyingBrick;
     private Camera mainCamera;
-    private float z = 0;
+    private float y = 0;
     private Touch touch;
+    public InstructionMaker instruction;
+    private int step;
 
     private void Awake()
     {
@@ -19,17 +21,22 @@ public class BricksGrid : MonoBehaviour
 
     public void StartPlacingBrick(Brick buildingPrefab)
     {
-        if (flyingBrick != null)
+        if (flyingBrick == null && instruction.currentStep > step)
+        {
+            flyingBrick = Instantiate(buildingPrefab);
+            step++;
+        }
+
+        else if(flyingBrick != null && instruction.currentStep == step)
         {
             Destroy(flyingBrick.gameObject);
+            flyingBrick = Instantiate(buildingPrefab);
         }
-        
-        flyingBrick = Instantiate(buildingPrefab);
     }
 
     private void Update()
     {
-        if(Input.touchCount > 0)
+        if(Input.touchCount > 0 && !CameraControll.movingState)
         {
             touch = Input.GetTouch(0);
             if (flyingBrick != null)
@@ -43,40 +50,26 @@ public class BricksGrid : MonoBehaviour
 
                     Vector3 worldPosition = ray.GetPoint(position);
                     int x = Mathf.RoundToInt(worldPosition.x);
-                    int y = Mathf.RoundToInt(worldPosition.z);
+                    int z = Mathf.RoundToInt(worldPosition.z);
 
-                    bool available = true;
+                    if (x < 0) x = 0;
+                    if (x > GridSize.x - flyingBrick.Size.x) x = GridSize.x;
+                    if (z < 0) z = 0;
+                    if (z > GridSize.y - flyingBrick.Size.y) z = GridSize.y;
 
-                    if (x < 0 || x > GridSize.x - flyingBrick.Size.x) available = false;
-                    if (y < 0 || y > GridSize.y - flyingBrick.Size.y) available = false;
-
-                    if (available && IsPlaceTaken(x, y)) available = false;
 
                     if (touch.phase == TouchPhase.Moved)
                     {
-                        flyingBrick.transform.position = new Vector3(x, z, y);
+                        flyingBrick.transform.position = new Vector3(x, y, z);
                     }
 
-                    if(available && touch.tapCount == 2)
-                        PlaceFlyingBrick(x, y);
-
+                    if(flyingBrick.transform.position == instruction.currentModel.transform.position)
+                        PlaceFlyingBrick(x, z);
                 }
+                
             }
         }
         
-    }
-
-    private bool IsPlaceTaken(int placeX, int placeY)
-    {
-        for (int x = 0; x < flyingBrick.Size.x; x++)
-        {
-            for (int y = 0; y < flyingBrick.Size.y; y++)
-            {
-                if (grid[placeX + x, placeY + y] != null) return true;
-            }
-        }
-
-        return false;
     }
 
     private void PlaceFlyingBrick(int placeX, int placeY)
@@ -88,8 +81,7 @@ public class BricksGrid : MonoBehaviour
                 grid[placeX + x, placeY + y] = flyingBrick;
             }
         }
-        z = 0;
-
+        y = 0;
         flyingBrick = null;
     }
 
@@ -97,7 +89,7 @@ public class BricksGrid : MonoBehaviour
     {
         if (flyingBrick != null)
         {
-            z += 1.2f;
+            y += 1.2f;
             flyingBrick.transform.position += new Vector3(0, 1.2f, 0);
         }
         
@@ -105,9 +97,9 @@ public class BricksGrid : MonoBehaviour
 
     public void DecreaseZ()
     {
-        if (flyingBrick != null && z != 0)
+        if (flyingBrick != null && y != 0)
         {
-            z -= 1.2f;
+            y -= 1.2f;
             flyingBrick.transform.position -= new Vector3(0, 1.2f, 0);
         }
 
