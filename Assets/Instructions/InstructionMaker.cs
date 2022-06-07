@@ -53,7 +53,7 @@ public class InstructionMaker : MonoBehaviour
         "5;2,4;6;0;brick2x2yellow",
         "5;3,6;5;0;brick2x2yellow",
         "5;4,8;4;0;brick1x2yellow",
-        "5;6,2;4;0;brick1x2orange",
+        "5;6,0;4;0;brick1x2orange",
         "5;7,2;4;0;brick2x2yellow",
         "5;8,4;4;0;brick1x2yellow",
         "2;0;1;0;brick1x2green",
