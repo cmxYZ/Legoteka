@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class BricksGrid : MonoBehaviour
 {
@@ -11,6 +12,14 @@ public class BricksGrid : MonoBehaviour
     private Touch touch;
     public InstructionMaker instruction;
     private int step;
+    public GameObject uiObjectWrong;
+    public GameObject uiObjectRight;
+
+    private void Start()
+    {
+        uiObjectWrong.SetActive(false);
+        uiObjectRight.SetActive(false);
+    }
 
     private void Awake()
     {
@@ -30,6 +39,11 @@ public class BricksGrid : MonoBehaviour
         else if(flyingBrick != null && instruction.currentStep == step)
         {
             Destroy(flyingBrick.gameObject);
+            flyingBrick = Instantiate(buildingPrefab);
+        }
+
+        else if (flyingBrick == null && instruction.currentStep == step)
+        {
             flyingBrick = Instantiate(buildingPrefab);
         }
     }
@@ -63,10 +77,20 @@ public class BricksGrid : MonoBehaviour
                         flyingBrick.transform.position = new Vector3(x, y, z);
                     }
 
-                    if(flyingBrick.transform.position == instruction.currentModel.transform.position)
+                    if(flyingBrick.transform.position == instruction.currentModel.transform.position && flyingBrick.tag.Contains(instruction.currentModel.tag))
                     {
+                        uiObjectRight.SetActive(true);
+                        StartCoroutine("Wait");
                         PlaceFlyingBrick(x, z);
                         instruction.NextStep();
+                    }
+
+                    else if(flyingBrick.transform.position == instruction.currentModel.transform.position && !flyingBrick.tag.Contains(instruction.currentModel.tag))
+                    {
+                        uiObjectWrong.SetActive(true);
+                        Destroy(flyingBrick.gameObject);
+                        y = 0;
+                        StartCoroutine("Wait");                        
                     }
                         
                 }
@@ -107,6 +131,13 @@ public class BricksGrid : MonoBehaviour
             flyingBrick.transform.position -= new Vector3(0, 1.2f, 0);
         }
 
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(3);
+        uiObjectWrong.SetActive(false);
+        uiObjectRight.SetActive(false);
     }
 
     public void Rotate()

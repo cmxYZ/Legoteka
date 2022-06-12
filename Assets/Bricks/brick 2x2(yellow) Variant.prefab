@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8040649868947979357}
   m_Layer: 0
   m_Name: brick 2x2(yellow) Variant
-  m_TagString: Untagged
+  m_TagString: 2x2 yellow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

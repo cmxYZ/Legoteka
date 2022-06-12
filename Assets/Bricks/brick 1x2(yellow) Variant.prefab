@@ -82,6 +82,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick 1x2(yellow) Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 38ff7bf0617ca0947a18ee2f0d803442,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 38ff7bf0617ca0947a18ee2f0d803442,
+        type: 3}
+      propertyPath: m_TagString
+      value: 1x2 yellow
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38ff7bf0617ca0947a18ee2f0d803442, type: 3}
 --- !u!1 &4008187784685227957 stripped
