@@ -20,4 +20,9 @@ public class UiControl : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+
+    public void InstructionGiraffe()
+    {
+        Application.OpenURL("https://drive.google.com/file/d/1SGDF0PAxUhWIYtsG83w55ni_mP4lbCty/view?usp=sharing");
+    }
 }
