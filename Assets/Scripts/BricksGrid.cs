@@ -80,9 +80,9 @@ public class BricksGrid : MonoBehaviour
                     if(flyingBrick.transform.position == instruction.currentModel.transform.position && flyingBrick.tag.Contains(instruction.currentModel.tag))
                     {
                         uiObjectRight.SetActive(true);
-                        StartCoroutine("Wait");
                         PlaceFlyingBrick(x, z);
                         instruction.NextStep();
+                        StartCoroutine("Wait");
                     }
 
                     else if(flyingBrick.transform.position == instruction.currentModel.transform.position && !flyingBrick.tag.Contains(instruction.currentModel.tag))
@@ -135,9 +135,9 @@ public class BricksGrid : MonoBehaviour
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(3);
-        uiObjectWrong.SetActive(false);
+        yield return new WaitForSeconds(1.5f);
         uiObjectRight.SetActive(false);
+        uiObjectWrong.SetActive(false);
     }
 
     public void Rotate()

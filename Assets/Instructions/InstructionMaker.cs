@@ -9,6 +9,8 @@ public class InstructionMaker : MonoBehaviour
     public Transform brick1x2orange;
     public Transform brick1x2yellow;
     public Transform brick2x2yellow;
+    public GameObject BricksPanel;
+    public GameObject Check;
 
     private List<string> Instructions;
     private Dictionary<string, Transform> Models;
@@ -77,6 +79,7 @@ public class InstructionMaker : MonoBehaviour
 
     public void Finish()
     {
-
+        BricksPanel.SetActive(false);
+        Check.SetActive(true);
     }
 }
