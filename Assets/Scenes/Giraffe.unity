@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44263518, g: 0.4917506, b: 0.5715611, a: 1}
+  m_IndirectSpecularColor: {r: 0.44263548, g: 0.49175107, b: 0.5715618, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -507,7 +507,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.88100004, y: 0.35937038}
   m_AnchorMax: {x: 1, y: 0.47500002}
-  m_AnchoredPosition: {x: -23.794006, y: 0.7973938}
+  m_AnchoredPosition: {x: -23.793945, y: 0.7973938}
   m_SizeDelta: {x: -49.016, y: -1.0217991}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &349089343
@@ -1237,7 +1237,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.88100004, y: 0.86688894}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -25.190002, y: -5.311615}
+  m_AnchoredPosition: {x: -25.189941, y: -5.3116455}
   m_SizeDelta: {x: -48.623, y: -13.433}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &773690067
@@ -1369,7 +1369,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.8791482, y: 0.52318513}
   m_AnchorMax: {x: 1, y: 0.642}
-  m_AnchoredPosition: {x: -22.507996, y: 0.14433289}
+  m_AnchoredPosition: {x: -22.508057, y: 0.14433289}
   m_SizeDelta: {x: -51.589, y: 0.25002003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &863398448
@@ -1715,7 +1715,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1144617784
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1732,7 +1732,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.88100004, y: 0}
   m_AnchorMax: {x: 1, y: 0.16518521}
-  m_AnchoredPosition: {x: -24.283997, y: 6.225281}
+  m_AnchoredPosition: {x: -24.283936, y: 6.225281}
   m_SizeDelta: {x: -50.636, y: -10.5977}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1144617785
@@ -1798,7 +1798,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1144617783}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
