@@ -76,7 +76,7 @@ public class InstructionMaker : MonoBehaviour
     }
 
     public void Finish()
-    { 
-    
+    {
+
     }
 }
