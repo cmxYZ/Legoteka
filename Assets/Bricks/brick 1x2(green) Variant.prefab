@@ -101,6 +101,31 @@ MeshRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 2748367560553548218}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &-96903914383686622
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3090947560367289579}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 40, y: 19.999996, z: 27.999994}
+  m_Center: {x: 20, y: -9.999998, z: 13.999997}
+--- !u!114 &1277092342525749562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3090947560367289579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 591409bc7f7ae9a42a8c195617254a76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5107344955615646595
 MonoBehaviour:
   m_ObjectHideFlags: 0

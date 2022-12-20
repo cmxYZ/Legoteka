@@ -7,6 +7,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -49599275352534542, guid: 1a3d64ca73f5a054f92fced2d099da68,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -49599275352534542, guid: 1a3d64ca73f5a054f92fced2d099da68,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1953166590303104160, guid: 1a3d64ca73f5a054f92fced2d099da68,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -15,7 +25,7 @@ PrefabInstance:
     - target: {fileID: 2171075159694158472, guid: 1a3d64ca73f5a054f92fced2d099da68,
         type: 3}
       propertyPath: m_Name
-      value: brick 2x2(yellow) Variant
+      value: brick2x2yellow
       objectReference: {fileID: 0}
     - target: {fileID: 4197704130470163011, guid: 1a3d64ca73f5a054f92fced2d099da68,
         type: 3}
@@ -72,5 +82,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -49599275352534542, guid: 1a3d64ca73f5a054f92fced2d099da68, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1a3d64ca73f5a054f92fced2d099da68, type: 3}

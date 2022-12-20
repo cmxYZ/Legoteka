@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class CameraControll : MonoBehaviour
 {
@@ -28,6 +29,12 @@ public class CameraControll : MonoBehaviour
     private float zoomPrevMagnitude;
     private bool firstZoomTouch;
 
+    private void OnEnable()
+    {
+        Events.IsNull += OnEnableCamera;
+        Events.IsNotNull += OnOffCamera;
+    }
+
     public void Update()
     {
         if (movingState) TrackTouches();
@@ -52,6 +59,11 @@ public class CameraControll : MonoBehaviour
             firstZoomTouch = true;
             if (touched) MoveCamera();
         }
+    }
+
+    private void Block()
+    {
+        
     }
 
     public void MoveCamera()
@@ -92,8 +104,23 @@ public class CameraControll : MonoBehaviour
         mainCamera.fieldOfView = Mathf.Clamp(mainCamera.fieldOfView - delta * zoomSensitivity, zoomMin, zoomMax);
     }
 
+    public void OnEnableCamera()
+    {
+        
+        movingState = true;
+        //Debug.Log("Enabled");
+    }
+
     public void OnOffCamera()
     {
-        movingState = !movingState;
+        movingState = false;
+        startPos = Input.mousePosition;
+       // Debug.Log("Blocked");
+    }
+
+    private void OnDisable()
+    {
+        Events.IsNull -= OnEnableCamera;
+        Events.IsNotNull -= OnOffCamera;
     }
 }

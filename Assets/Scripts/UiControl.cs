@@ -6,14 +6,30 @@ using UnityEngine.SceneManagement;
 
 public class UiControl : MonoBehaviour
 {
+    private void Start()
+    {
+        //SceneManager.LoadScene("GiraffeNoHelper");
+        //SceneManager.LoadScene("GiraffeWithHelper");
+
+    }
     public void SceneSettings()
     {
         SceneManager.LoadScene("Settings");
     }
 
-    public void SceneGiraffe()
+    public void SceneGiraffeNoHelper()
     {
-        SceneManager.LoadScene("Giraffe");
+        SceneManager.LoadScene("GiraffeNoHelper");
+    }
+
+    public void SceneGiraffeWithHelper()
+    {
+        SceneManager.LoadScene("GiraffeWithHelper");
+    }
+
+    public void SceneChooseGiraffe()
+    {
+        SceneManager.LoadScene("ChooseGiraffe");
     }
 
     public void BackToMainMenu()

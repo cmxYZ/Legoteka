@@ -8,6 +8,7 @@ TagManager:
   - 1x2 yellow
   - 1x2 orange
   - 1x2 green
+  - Brick
   layers:
   - Default
   - TransparentFX

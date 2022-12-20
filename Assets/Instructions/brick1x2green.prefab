@@ -65,12 +65,13 @@ PrefabInstance:
     - target: {fileID: 3090947560367289579, guid: 2d41a0c2e6e8d8348a226df365f0ab39,
         type: 3}
       propertyPath: m_Name
-      value: brick 1x2(green) Variant
+      value: brick1x2green
       objectReference: {fileID: 0}
     - target: {fileID: 3595486713715283262, guid: 2d41a0c2e6e8d8348a226df365f0ab39,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2245a71c6a74390439b1033f1e400a1e, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6209179905784722622, guid: 2d41a0c2e6e8d8348a226df365f0ab39, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2d41a0c2e6e8d8348a226df365f0ab39, type: 3}

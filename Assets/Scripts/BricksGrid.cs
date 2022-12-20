@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System;
 
 public class BricksGrid : MonoBehaviour
 {
     public Vector2Int GridSize = new Vector2Int(10, 10);
-
+    private List<Vector3> brickPos;
     private Brick[,] grid;
     private Brick flyingBrick;
     private Camera mainCamera;
@@ -14,6 +16,8 @@ public class BricksGrid : MonoBehaviour
     private int step;
     public GameObject uiObjectWrong;
     public GameObject uiObjectRight;
+    private Stack<Brick> posStack;
+    private Stack<Transform> instrStack;
 
     private void Start()
     {
@@ -24,8 +28,10 @@ public class BricksGrid : MonoBehaviour
     private void Awake()
     {
         grid = new Brick[GridSize.x, GridSize.y];
-        
+        brickPos = new List<Vector3>();
         mainCamera = Camera.main;
+        posStack = new Stack<Brick>();
+        instrStack = new Stack<Transform>();
     }
 
     public void StartPlacingBrick(Brick buildingPrefab)
@@ -50,6 +56,9 @@ public class BricksGrid : MonoBehaviour
 
     private void Update()
     {
+        
+        
+        
         if(Input.touchCount > 0 && !CameraControll.movingState)
         {
             touch = Input.GetTouch(0);
@@ -57,7 +66,8 @@ public class BricksGrid : MonoBehaviour
             {
                 var groundPlane = new Plane(Vector3.up, Vector3.zero);
                 Ray ray = mainCamera.ScreenPointToRay(touch.position);
-
+                Vector3 offset = mainCamera.transform.up * 0.1f;
+                ray.origin += offset;
 
                 if (groundPlane.Raycast(ray, out float position))
                 {
@@ -65,6 +75,7 @@ public class BricksGrid : MonoBehaviour
                     Vector3 worldPosition = ray.GetPoint(position);
                     int x = Mathf.RoundToInt(worldPosition.x);
                     int z = Mathf.RoundToInt(worldPosition.z);
+                    
 
                     if (x < 0) x = 0;
                     if (x > GridSize.x - flyingBrick.Size.x) x = GridSize.x;
@@ -74,13 +85,15 @@ public class BricksGrid : MonoBehaviour
 
                     if (touch.phase == TouchPhase.Moved)
                     {
-                        flyingBrick.transform.position = new Vector3(x, y, z);
+                        flyingBrick.transform.position = new Vector3(x, instruction.currentModel.position.y, z);
                     }
-
-                    if(flyingBrick.transform.position == instruction.currentModel.transform.position && flyingBrick.tag.Contains(instruction.currentModel.tag))
+                    
+                    if (flyingBrick.transform.position == instruction.currentModel.transform.position && flyingBrick.tag.Contains(instruction.currentModel.tag))
                     {
+                        brickPos.Add(flyingBrick.transform.position);
                         uiObjectRight.SetActive(true);
                         PlaceFlyingBrick(x, z);
+                        instrStack.Push(instruction.currentModel);
                         instruction.NextStep();
                         StartCoroutine("Wait");
                     }
@@ -97,6 +110,7 @@ public class BricksGrid : MonoBehaviour
                 
             }
         }
+        CheckBrick();
         
     }
 
@@ -109,29 +123,42 @@ public class BricksGrid : MonoBehaviour
                 grid[placeX + x, placeY + y] = flyingBrick;
             }
         }
+        posStack.Push(flyingBrick);
+        
         y = 0;
         flyingBrick = null;
     }
 
-    public void IncreazeZ()
+    public void CheckBrick()
     {
-        if (flyingBrick != null)
-        {
-            y += 1.2f;
-            flyingBrick.transform.position += new Vector3(0, 1.2f, 0);
-        }
+        if (flyingBrick == null && touch.phase == TouchPhase.Moved)
+            Events.InvokeIfNull();
+        else
+            Events.InvokeIfNotNull();
+    }
+
+    
+
+    //public void IncreazeZ()
+    //{
+
+    //    if (flyingBrick != null)
+    //    {
+    //        y += 1.2f;
+    //        flyingBrick.transform.position += new Vector3(0, 1.2f, 0);
+    //    }
         
-    }
+    //}
 
-    public void DecreaseZ()
-    {
-        if (flyingBrick != null && y != 0)
-        {
-            y -= 1.2f;
-            flyingBrick.transform.position -= new Vector3(0, 1.2f, 0);
-        }
+    //public void DecreaseZ()
+    //{
+    //    if (flyingBrick != null && y != 0)
+    //    {
+    //        y -= 1.2f;
+    //        flyingBrick.transform.position -= new Vector3(0, 1.2f, 0);
+    //    }
 
-    }
+    //}
 
     IEnumerator Wait()
     {
@@ -140,8 +167,12 @@ public class BricksGrid : MonoBehaviour
         uiObjectWrong.SetActive(false);
     }
 
-    public void Rotate()
+    public void ReverseStep()
     {
-        flyingBrick.transform.Rotate(0, 0, 90);
+        instruction.currentStep -= 1;
+        Destroy(posStack.Pop().gameObject);
+        Destroy(instruction.currentModel.gameObject);
+        var ic = instrStack.Pop();
+        Instantiate(ic.gameObject);
     }
 }
