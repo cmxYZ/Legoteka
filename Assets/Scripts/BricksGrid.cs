@@ -18,6 +18,10 @@ public class BricksGrid : MonoBehaviour
     public GameObject uiObjectRight;
     private Stack<Brick> posStack;
     private Stack<Transform> instrStack;
+    public AudioSource source;
+    public AudioClip wrong;
+    public AudioClip audioClip;
+    System.Random rnd = new System.Random();
 
     private void Start()
     {
@@ -32,6 +36,8 @@ public class BricksGrid : MonoBehaviour
         mainCamera = Camera.main;
         posStack = new Stack<Brick>();
         instrStack = new Stack<Transform>();
+        
+        
     }
 
     public void StartPlacingBrick(Brick buildingPrefab)
@@ -77,10 +83,10 @@ public class BricksGrid : MonoBehaviour
                     int z = Mathf.RoundToInt(worldPosition.z);
                     
 
-                    if (x < 0) x = 0;
-                    if (x > GridSize.x - flyingBrick.Size.x) x = GridSize.x;
-                    if (z < 0) z = 0;
-                    if (z > GridSize.y - flyingBrick.Size.y) z = GridSize.y;
+                    //if (x < 0) x = 0;
+                    //if (x > GridSize.x - flyingBrick.Size.x) x = GridSize.x;
+                    //if (z < 0) z = 0;
+                    //if (z > GridSize.y - flyingBrick.Size.y) z = GridSize.y;
 
 
                     if (touch.phase == TouchPhase.Moved)
@@ -91,6 +97,7 @@ public class BricksGrid : MonoBehaviour
                     if (flyingBrick.transform.position == instruction.currentModel.transform.position && flyingBrick.tag.Contains(instruction.currentModel.tag))
                     {
                         brickPos.Add(flyingBrick.transform.position);
+                        source.PlayOneShot(audioClip);
                         uiObjectRight.SetActive(true);
                         PlaceFlyingBrick(x, z);
                         instrStack.Push(instruction.currentModel);
@@ -101,6 +108,7 @@ public class BricksGrid : MonoBehaviour
                     else if(flyingBrick.transform.position == instruction.currentModel.transform.position && !flyingBrick.tag.Contains(instruction.currentModel.tag))
                     {
                         uiObjectWrong.SetActive(true);
+                        source.PlayOneShot(wrong);
                         Destroy(flyingBrick.gameObject);
                         y = 0;
                         StartCoroutine("Wait");                        

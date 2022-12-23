@@ -17,6 +17,11 @@ public class UiControl : MonoBehaviour
         SceneManager.LoadScene("Settings");
     }
 
+    public void CrocodileWithHelper()
+    {
+        SceneManager.LoadScene("CrocodileWithHelper");
+    }
+
     public void SceneGiraffeNoHelper()
     {
         SceneManager.LoadScene("GiraffeNoHelper");
@@ -40,5 +45,10 @@ public class UiControl : MonoBehaviour
     public void InstructionGiraffe()
     {
         Application.OpenURL("https://drive.google.com/file/d/1SGDF0PAxUhWIYtsG83w55ni_mP4lbCty/view?usp=sharing");
+    }
+
+    public void InstructionCrocodile()
+    {
+        Application.OpenURL("https://drive.google.com/file/d/1Z8lqTqnY2yJRu4-iSARx-kXwWcRuJ4yg/view?usp=sharing");
     }
 }

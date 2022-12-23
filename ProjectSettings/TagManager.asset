@@ -9,6 +9,14 @@ TagManager:
   - 1x2 orange
   - 1x2 green
   - Brick
+  - 2x3green
+  - 2x4bright_green
+  - 2x4green
+  - witheye1x1green
+  - plate2x3green
+  - plate2x10medium_blue
+  - plateround1x1white
+  - slopebrick452x2green
   layers:
   - Default
   - TransparentFX

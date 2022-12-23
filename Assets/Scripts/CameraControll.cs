@@ -16,7 +16,7 @@ public class CameraControll : MonoBehaviour
     private float sensitivity = 0.005f;
     private float rotateSensitivity = 0.1f;
     private float zoomSensitivity = 0.05f;
-    private float zoomMin = 40;
+    private float zoomMin = 20;
     private float zoomMax = 90;
     private float YMin = 0;
     private float YMax = 15;
@@ -108,14 +108,12 @@ public class CameraControll : MonoBehaviour
     {
         
         movingState = true;
-        //Debug.Log("Enabled");
     }
 
     public void OnOffCamera()
     {
         movingState = false;
         startPos = Input.mousePosition;
-       // Debug.Log("Blocked");
     }
 
     private void OnDisable()

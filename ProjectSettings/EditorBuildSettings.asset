@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GiraffeNoHelper.unity
     guid: 5dca6f9bb633c214994b695c4a9f58a2
+  - enabled: 1
+    path: Assets/Scenes/CrocodileWithHelper.unity
+    guid: 0a8292d357354f34ebe82074153d790d
   m_configObjects: {}

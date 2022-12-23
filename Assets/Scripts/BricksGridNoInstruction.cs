@@ -13,6 +13,8 @@ public class BricksGridNoInstruction : MonoBehaviour
     private int step;
     private List<int> cList;
     private Stack<Brick> posStack;
+    public AudioSource source;
+    public AudioClip audioClip;
     //public GameObject uiObjectWrong;
     //public GameObject uiObjectRight;
 
@@ -92,6 +94,7 @@ public class BricksGridNoInstruction : MonoBehaviour
                 grid[placeX + x, placeY + y] = flyingBrick;
             }
         }
+        source.PlayOneShot(audioClip);
         posStack.Push(flyingBrick);
         y = 0;
         flyingBrick = null;
