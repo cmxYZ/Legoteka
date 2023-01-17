@@ -15,14 +15,6 @@ public class BricksGridNoInstruction : MonoBehaviour
     private Stack<Brick> posStack;
     public AudioSource source;
     public AudioClip audioClip;
-    //public GameObject uiObjectWrong;
-    //public GameObject uiObjectRight;
-
-    private void Start()
-    {
-        //uiObjectWrong.SetActive(false);
-        //uiObjectRight.SetActive(false);
-    }
 
     private void Awake()
     {
@@ -36,7 +28,7 @@ public class BricksGridNoInstruction : MonoBehaviour
     {
         if(flyingBrick == null)
             flyingBrick = Instantiate(buildingPrefab);
-        else if(flyingBrick != null)
+        else if(flyingBrick != null && flyingBrick == buildingPrefab)
         {
             Destroy(flyingBrick.gameObject);
             flyingBrick = Instantiate(buildingPrefab);
@@ -48,26 +40,19 @@ public class BricksGridNoInstruction : MonoBehaviour
         if (Input.touchCount > 0 && !CameraControll.movingState)
         {
             touch = Input.GetTouch(0);
-
+            
             if (flyingBrick != null)
             {
                 var groundPlane = new Plane(Vector3.up, Vector3.zero);
                 Ray ray = mainCamera.ScreenPointToRay(touch.position);
                 Vector3 offset = mainCamera.transform.up * 0.1f;
                 ray.origin += offset;
-
                 if (groundPlane.Raycast(ray, out float position))
                 {
 
                     Vector3 worldPosition = ray.GetPoint(position);
                     int x = Mathf.RoundToInt(worldPosition.x);
                     int z = Mathf.RoundToInt(worldPosition.z);
-
-                    if (x < 0) x = 0;
-                    if (x > GridSize.x - flyingBrick.Size.x) x = GridSize.x;
-                    if (z < 0) z = 0;
-                    if (z > GridSize.y - flyingBrick.Size.y) z = GridSize.y;
-
 
                     if (touch.phase == TouchPhase.Moved)
                     {
@@ -80,6 +65,7 @@ public class BricksGridNoInstruction : MonoBehaviour
 
             }
         }
+
         CheckBrick();
     }
 
@@ -108,8 +94,6 @@ public class BricksGridNoInstruction : MonoBehaviour
             Events.InvokeIfNotNull();
     }
 
-
-
     public void IncreazeZ()
     {
 
@@ -121,14 +105,49 @@ public class BricksGridNoInstruction : MonoBehaviour
 
     }
 
+    public void IncreazeZSmall()
+    {
+
+        if (flyingBrick != null)
+        {
+            y += 0.4f;
+            flyingBrick.transform.position += new Vector3(0, 0.4f, 0);
+        }
+
+    }
+
     public void DecreaseZ()
     {
         if (flyingBrick != null && y != 0)
         {
-            y -= 1.2f;
-            flyingBrick.transform.position -= new Vector3(0, 1.2f, 0);
+            if (y - 1.2f < 0)
+            {
+                y = 0;
+                flyingBrick.transform.position = new Vector3(flyingBrick.transform.position.x, 0, flyingBrick.transform.position.z);
+            }
+            else
+            {
+                y -= 1.2f;
+                flyingBrick.transform.position -= new Vector3(0, 1.2f, 0);
+            }
         }
 
+    }
+
+    public void DecreaseZSmall()
+    {
+        if (flyingBrick != null && y != 0)
+        {
+            y -= 0.4f;
+            flyingBrick.transform.position -= new Vector3(0, 0.4f, 0);
+        }
+
+    }
+
+    public void RotateBrick()
+    {
+        if(flyingBrick != null)
+            flyingBrick.transform.Rotate(new Vector3(0, 0, 90f));
     }
 
     public void ReverseStep()

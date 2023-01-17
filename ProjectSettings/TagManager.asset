@@ -17,6 +17,16 @@ TagManager:
   - plate2x10medium_blue
   - plateround1x1white
   - slopebrick452x2green
+  - 1x2light_grey
+  - 2x4light_grey
+  - witheye1x1white
+  - plate2x2dark_grey
+  - plate2x4blue
+  - plate2x6dark_grey
+  - slopebrickinv1x2dark_grey
+  - slopebrickinv2x2dark_grey
+  - slopebrick2x3dark_grey
+  - slopebricksmalllight_grey
   layers:
   - Default
   - TransparentFX

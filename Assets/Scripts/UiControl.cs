@@ -8,8 +8,6 @@ public class UiControl : MonoBehaviour
 {
     private void Start()
     {
-        //SceneManager.LoadScene("GiraffeNoHelper");
-        //SceneManager.LoadScene("GiraffeWithHelper");
 
     }
     public void SceneSettings()
@@ -22,9 +20,19 @@ public class UiControl : MonoBehaviour
         SceneManager.LoadScene("CrocodileWithHelper");
     }
 
+    public void SceneCrocodileNoHelper()
+    {
+        SceneManager.LoadScene("CrocodileNoHelper");
+    }
+
     public void SceneGiraffeNoHelper()
     {
         SceneManager.LoadScene("GiraffeNoHelper");
+    }
+
+    public void SceneHorseWithHelper()
+    {
+        SceneManager.LoadScene("HorseWithHelper");
     }
 
     public void SceneGiraffeWithHelper()
@@ -35,6 +43,11 @@ public class UiControl : MonoBehaviour
     public void SceneChooseGiraffe()
     {
         SceneManager.LoadScene("ChooseGiraffe");
+    }
+
+    public void SceneChooseCrocodile()
+    {
+        SceneManager.LoadScene("ChooseCrocodile");
     }
 
     public void BackToMainMenu()
@@ -51,4 +64,11 @@ public class UiControl : MonoBehaviour
     {
         Application.OpenURL("https://drive.google.com/file/d/1Z8lqTqnY2yJRu4-iSARx-kXwWcRuJ4yg/view?usp=sharing");
     }
+
+    public void InstructionHorse()
+    {
+        Application.OpenURL("https://drive.google.com/file/d/1-TukMFR6-tnhCTYNOr8u9TuBdhVO8nd_/view?usp=sharing");
+    }
+
+    
 }
